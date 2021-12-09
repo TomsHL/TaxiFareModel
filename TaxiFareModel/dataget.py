@@ -1,5 +1,6 @@
 import pandas as pd
 
+# Bucket with the dataset
 AWS_BUCKET_PATH = "s3://wagon-public-datasets/taxi-fare-train.csv"
 
 
@@ -10,6 +11,7 @@ def get_data(nrows=10_000):
 
 
 def clean_data(df, test=False):
+    ''' Cleans the data, chekcs if in NYC'''
     df = df.dropna(how='any', axis='rows')
     df = df[(df.dropoff_latitude != 0) | (df.dropoff_longitude != 0)]
     df = df[(df.pickup_latitude != 0) | (df.pickup_longitude != 0)]
